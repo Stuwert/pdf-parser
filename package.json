@@ -1,20 +1,23 @@
 {
   "name": "pdf-parser",
-  "version": "1.0.0",
-  "description": "Backend for a parser",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "watchify frontend/build/main.js -o frontend/js/app.js"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Stuwert/pdf-parser.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Stuwert/pdf-parser/issues"
-  },
-  "homepage": "https://github.com/Stuwert/pdf-parser#readme"
+  "dependencies": {
+    "angular": "^1.5.5",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "dotenv": "^2.0.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "knex": "^0.10.0",
+    "morgan": "~1.6.1",
+    "ng-file-upload": "^12.0.4",
+    "pg": "^4.5.3",
+    "serve-favicon": "~2.3.0",
+    "unirest": "^0.4.2"
+  }
 }

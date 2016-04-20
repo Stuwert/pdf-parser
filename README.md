@@ -2,7 +2,7 @@
 
 This is a basic PDF parsing application that will take drag and drop input from a user and save information to a database in addition to making an API call.
 
-The project management link can be found [on a trello board](https://trello.com/b/1u1fXSiE/covered-insurance-project), and the website can be found at [PDF Parser](http://someheroku-app.herokuapp.com)
+The project management link can be found [on a trello board](https://trello.com/b/1u1fXSiE/covered-insurance-project), and the website can be found at [PDF Parser](http://pdfparser.firebaseapp.com)
 
 
 ## Installation instructions
