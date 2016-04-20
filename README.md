@@ -23,7 +23,8 @@ to  view the front-end
 ```
 firebase serve
 ```
-to compile new code
+to compile new code.
+New code is compiled from the build folder into the js/app.js file.
 ```
-watchify (extra code here)
+npm run build
 ```

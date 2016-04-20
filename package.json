@@ -1,0 +1,20 @@
+{
+  "name": "pdf-parser",
+  "version": "1.0.0",
+  "description": "Backend for a parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "watchify frontend/build/main.js -o frontend/js/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stuwert/pdf-parser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stuwert/pdf-parser/issues"
+  },
+  "homepage": "https://github.com/Stuwert/pdf-parser#readme"
+}
