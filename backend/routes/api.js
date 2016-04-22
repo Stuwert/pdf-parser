@@ -8,7 +8,7 @@ var rimraf = require('rimraf')
 var knex = require('../lib/knex')
 var fs = require('fs')
 var path = require('path');
-var pathToPDF = path.join(__dirname, '../tmp')
+var pathToPDF = path.join(__dirname, '../../tmp')
 var multiparty = require('connect-multiparty')
 var multipartyMiddleware = multiparty()
 var router = express.Router();
@@ -53,13 +53,13 @@ router.post('/', multipartyMiddleware, function(req, res){
       }else{
         res.status(206).json({message : 'Please input a correct zip code'})
       }
-      // rimraf(pathToPDF, function(){
-      //   console.log('finished');
-      //   fs.mkdir(pathToPDF, function(err){
-      //     console.log('bing bong');
-      //     if(err) throw err;
-      //   })
-      // })
+      rimraf(pathToPDF, function(){
+        console.log('finished');
+        fs.mkdir(pathToPDF, function(err){
+          console.log('bing bong');
+          if(err) throw err;
+        })
+      })
     })
   })
 
