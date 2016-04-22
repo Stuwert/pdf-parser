@@ -25,7 +25,7 @@ router.get('/all', function(req, res, next) {
 
 router.post('/', multipartyMiddleware, function(req, res){
   var pdfParser = new PDFparser();
-
+  console.log(pdfParser);
   pdfParser.on("pdf_dataError", function(errData){
     console.log(errData.parserError)
   })
