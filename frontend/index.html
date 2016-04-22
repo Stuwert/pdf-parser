@@ -56,6 +56,18 @@
       </tbody>
     </table>
 
+
+    <div class="data-dump">
+
+      <button ng-click="getAllData()">Get All Data in Database</button>
+
+      <div ng-repeat="user in users">
+        {{user}}
+      </div>
+
+    </div>
+
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>

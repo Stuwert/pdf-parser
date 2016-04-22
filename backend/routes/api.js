@@ -17,10 +17,10 @@ var parser = require('../lib/parser')
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  // unirest.get('http://api.zippopotam.us/us/82020').end(function(response){
-  //   console.log(response.body);
-  // })
+router.get('/all', function(req, res, next) {
+  Users().then(function(users){
+    res.json(users);
+  })
 });
 
 router.post('/', multipartyMiddleware, function(req, res){

@@ -32,7 +32,7 @@ app.controller('PDFController', ['$scope', 'FileUploader', '$http', function($sc
 
   $scope.getAllData = function(){
     $http.get('http://localhost:3000/api/all').then(function(response){
-      console.log(response.data);
+      $scope.users = response.data
     })
   }
 
