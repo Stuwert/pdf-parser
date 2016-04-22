@@ -3,7 +3,7 @@ $('#submit').click(function(){
   data.append('pdf_file', $('#file').prop('files')[0])
   console.log('bing bong');
   $.ajax( {
-    url: "http://localhost:3000/api",
+    url: "https://pdfparserbackend.herokuapp.com/api",
     type: "POST",
     processData: false, // important
     contentType: false, // important
@@ -17,7 +17,7 @@ var app = angular.module('pdfParser', ['angularFileUpload'])
 
 app.controller('PDFController', ['$scope', 'FileUploader', '$http', function($scope, FileUploader, $http){
   var uploader = $scope.uploader = new FileUploader({
-    url: 'http://localhost:3000/api'
+    url: 'https://pdfparserbackend.herokuapp.com/api'
   })
 
   uploader.onSuccessItem = function(fileItem, response, status, headers) {
@@ -31,7 +31,7 @@ app.controller('PDFController', ['$scope', 'FileUploader', '$http', function($sc
   };
 
   $scope.getAllData = function(){
-    $http.get('http://localhost:3000/api/all').then(function(response){
+    $http.get('https://pdfparserbackend.herokuapp.com/api/all').then(function(response){
       $scope.users = response.data
     })
   }
