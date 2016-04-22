@@ -12,7 +12,7 @@ var router = express.Router();
 var PDFparser = require('../../node_modules/pdf2json/pdfparser')
 var parser = require('../lib/parser')
 
-console.log(pathToPDF)
+console.log(multipartyMiddleware)
 
 
 
