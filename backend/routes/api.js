@@ -1,4 +1,7 @@
 "use strict"
+
+
+
 var express = require('express');
 var unirest = require('unirest')
 var rimraf = require('rimraf')
@@ -7,12 +10,10 @@ var fs = require('fs')
 var path = require('path');
 var pathToPDF = path.join(__dirname, '../tmp')
 var multiparty = require('connect-multiparty')
-var multipartyMiddleware = multiparty({ uploadDir: pathToPDF })
+var multipartyMiddleware = multiparty()
 var router = express.Router();
 var PDFparser = require('../../node_modules/pdf2json/pdfparser')
 var parser = require('../lib/parser')
-
-console.log(multipartyMiddleware)
 
 
 
