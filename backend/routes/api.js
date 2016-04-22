@@ -56,6 +56,7 @@ router.post('/', multipartyMiddleware, function(req, res){
       rimraf(pathToPDF, function(){
         console.log('finished');
         fs.mkdir(pathToPDF, function(err){
+          console.log('bing bong');
           if(err) throw err;
         })
       })
@@ -64,12 +65,6 @@ router.post('/', multipartyMiddleware, function(req, res){
 
   var findPDF = req.files.file.path;
   pdfParser.loadPDF(findPDF)
-  // fs.readFile(findPDF, (err, pdfBuffer) => {
-  //   if(!err){
-  //     console.log('bing bong');
-  //     pdfParser.parseBuffer(pdfBuffer);
-  //   }
-  // })
 })
 
 module.exports = router;

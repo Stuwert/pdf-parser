@@ -15,7 +15,7 @@ $('#submit').click(function(){
 
 var app = angular.module('pdfParser', ['angularFileUpload'])
 
-app.controller('PDFController', ['$scope', 'FileUploader', function($scope, FileUploader){
+app.controller('PDFController', ['$scope', 'FileUploader', '$http', function($scope, FileUploader, $http){
   var uploader = $scope.uploader = new FileUploader({
     url: 'http://localhost:3000/api'
   })
@@ -29,5 +29,11 @@ app.controller('PDFController', ['$scope', 'FileUploader', function($scope, File
 
     console.log(response);
   };
+
+  $scope.getAllData = function(){
+    $http.get('http://localhost:3000/api/all').then(function(response){
+      console.log(response.data);
+    })
+  }
 
 }])
