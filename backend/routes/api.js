@@ -9,7 +9,7 @@ var pathToPDF = path.join(__dirname, '../tmp')
 var multiparty = require('connect-multiparty')
 var multipartyMiddleware = multiparty({ uploadDir: pathToPDF })
 var router = express.Router();
-var PDFparser = require('../pdf2json/pdfparser')
+var PDFparser = require('../../node_modules/pdf2json/pdfparser')
 var parser = require('../lib/parser')
 
 
