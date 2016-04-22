@@ -1,3 +1,4 @@
+"use strict"
 var express = require('express');
 var unirest = require('unirest')
 var rimraf = require('rimraf')
@@ -11,39 +12,8 @@ var router = express.Router();
 var PDFparser = require('../../node_modules/pdf2json/PDFParser')
 var parser = require('../lib/parser')
 
-var pdfParser = new PDFparser();
 
-pdfParser.on("pdf_dataError", function(errData){
-  console.log(errData.parserError)
-})
-pdfParser.on("pdfParser_dataReady", function(pdfData){
-  var pdfObj = parser(pdfData)
-  unirest.get('https://api.zippopotam.us/us/' + pdfObj.Postcode)
-  .end(function(response){
-    var responseObj = response.body;
-    if(responseObj.places){
-      var places = responseObj.places[0]
-      var dataObj = {
-        first_name : pdfObj['Forename(s)'],
-        last_name: pdfObj.Surname,
-        zip_code : pdfObj.Postcode,
-        city: places['place name'],
-        state: places.state,
-        latitude: places.latitude,
-        longitude : places.longitude
-      }
-      Users().insert(dataObj).then(function(){
-        console.log('it worked!');
-      })
-    }
-    // rimraf(pathToPDF, function(){
-    //   console.log('finished');
-    //   fs.mkdir(pathToPDF, function(err){
-    //     if(err) throw err;
-    //   })
-    // })
-  })
-})
+
 
 
 /* GET users listing. */
@@ -54,9 +24,52 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', multipartyMiddleware, function(req, res){
-  var findPDF = req.files.pdf_file.path;
-  pdfParser.loadPDF(findPDF)
+  var pdfParser = new PDFparser();
+  
+  pdfParser.on("pdf_dataError", function(errData){
+    console.log(errData.parserError)
+  })
+  pdfParser.on("pdfParser_dataReady", function(pdfData){
+    var pdfObj = parser(pdfData)
+    console.log(pdfObj);
+    // console.log(pdfObj.Postcode);
+    unirest.get('https://api.zippopotam.us/us/' + pdfObj.Postcode)
+    .end(function(response){
+      var responseObj = response.body;
+      if(responseObj.places){
+        var places = responseObj.places[0]
+        var dataObj = {
+          first_name : pdfObj['Forename(s)'],
+          last_name: pdfObj.Surname,
+          zip_code : pdfObj.Postcode,
+          city: places['place name'],
+          state: places.state,
+          latitude: places.latitude,
+          longitude : places.longitude
+        }
+        Users().insert(dataObj).then(function(){
+          res.status(200).json(dataObj)
+        })
+      }else{
+        res.status(206).json({message : 'Please input a correct zip code'})
+      }
+      // rimraf(pathToPDF, function(){
+      //   console.log('finished');
+      //   fs.mkdir(pathToPDF, function(err){
+      //     if(err) throw err;
+      //   })
+      // })
+    })
+  })
 
+  var findPDF = req.files.file.path;
+  pdfParser.loadPDF(findPDF)
+  // fs.readFile(findPDF, (err, pdfBuffer) => {
+  //   if(!err){
+  //     console.log('bing bong');
+  //     pdfParser.parseBuffer(pdfBuffer);
+  //   }
+  // })
 })
 
 module.exports = router;
