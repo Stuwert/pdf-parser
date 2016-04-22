@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', multipartyMiddleware, function(req, res){
   var pdfParser = new PDFparser();
-  
+
   pdfParser.on("pdf_dataError", function(errData){
     console.log(errData.parserError)
   })
@@ -53,12 +53,12 @@ router.post('/', multipartyMiddleware, function(req, res){
       }else{
         res.status(206).json({message : 'Please input a correct zip code'})
       }
-      // rimraf(pathToPDF, function(){
-      //   console.log('finished');
-      //   fs.mkdir(pathToPDF, function(err){
-      //     if(err) throw err;
-      //   })
-      // })
+      rimraf(pathToPDF, function(){
+        console.log('finished');
+        fs.mkdir(pathToPDF, function(err){
+          if(err) throw err;
+        })
+      })
     })
   })
 
